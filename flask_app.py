@@ -54,10 +54,10 @@ def index():
         feed = Feed(name= name, idno = idno ,email = email,phno = phno,feed = feeds)
         db.session.add(feed)
         db.session.commit()
-        return "Success"
+        return redirect('/allfeedback')
 
 @app.route('/allfeedback', methods = ['GET'])
 def feed():
 
-        return render_template('feedbacks.html', feeds =Feed.query.all())
-
+        # return render_template('feedbacks.html', comments=Comment.query.all())
+        return render_template('feedbacks.html', query = Feed.query.all())

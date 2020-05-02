@@ -1,13 +1,16 @@
 <<table border = 1>
-  {% for feed in feeds %}
+  {% for feed in query %}
   <tr>
-    <td> {{feeds[0]}} </td>
-    <td> {{feeds[1]}} </td>
-    <td> {{feeds[2]}} </td>
-    <td> {{feeds[3]}} </td>
-    <td> {{feeds[4]}} </td>
+    <td> {{feed.name}} </td>
+    <td> {{feed.idno}} </td>
+    <td> {{feed.email}} </td>
+    <td> {{feed.phno}} </td>
+    <td> {{feed.feed}} </td>
   </tr>
 
   {% endfor %}
 
 </table>
+
+
+
