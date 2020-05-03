@@ -64,3 +64,8 @@ def feed():
 
         # return render_template('feedbacks.html', comments=Comment.query.all())
         return render_template('feedbacks.html', query = Feed.query.all())
+
+
+@app.route("/login/")
+def login():
+    return render_template("login_page.html")
