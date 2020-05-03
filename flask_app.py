@@ -33,6 +33,7 @@ class Feed(db.Model):
     idno = db.Column(db.String(30))
     email = db.Column(db.String(30))
     phno = db.Column(db.String(30))
+    grade = db.Column(db.String(30))
     feed = db.Column(db.String(4096))
 
 
@@ -50,8 +51,10 @@ def index():
         idno = request.form['idno']
         email = request.form['email']
         phno = request.form['phone']
+        grade = request.form['grade']
         feeds = request.form['feed']
-        feed = Feed(name= name, idno = idno ,email = email,phno = phno,feed = feeds)
+
+        feed = Feed(name= name, idno = idno ,email = email,phno = phno, grade = grade,feed = feeds)
         db.session.add(feed)
         db.session.commit()
         return redirect('/allfeedback')
