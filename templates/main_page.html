@@ -3,6 +3,42 @@
 <html>
   <head>
     <title>Dheeti Analytica  </title>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+        <title>My scratchboard page: log in</title>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Appraisal Form</a>
+                </div>
+           <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">Log out</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Log in</a></li>
+        {% endif %}
+    </ul>
+
+
+            </div>
+        </nav>
+
+
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <style>
@@ -136,6 +172,8 @@
     <div class="main-block">
       <h1>Employee Rating Form</h1>
       <form method="POST" action="">
+
+
         <div class="info">
           <div class="info-item">
             <label class="icon" for="name"><i class="fas fa-user"></i></label>
@@ -182,5 +220,6 @@
         <button type="submit" href="/">Submit</button>
       </form>
     </div>
+
   </body>
 </html>
