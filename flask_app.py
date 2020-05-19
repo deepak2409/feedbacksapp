@@ -32,15 +32,18 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(128))
     password_hash = db.Column(db.String(128))
+    EmpId = db.Column(db.Integer)
+    MangId = db.Column(db.Integer)
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     def get_id(self):
         return self.username
 
 # all_users = {
-#     "admin": User("admin", generate_password_hash("secret")),
-#     "bob": User("bob", generate_password_hash("less-secret")),
-#     "caroline": User("caroline", generate_password_hash("completely-secret")),
+#     "admin": User(username = "admin", password_hash= generate_password_hash("secret"),EmpId=1,MangId=2),
+#     "CEO": User(username ="CEO",password_hash= generate_password_hash("secret"),EmpId=2),
+#     "depH1": User(username ="DepH",password_hash= generate_password_hash("secret"),EmpId=3,MangId =2),
+#     "Intern": User(username ="Intern",password_hash= generate_password_hash("secret"),EmpId=4,MangId =3)
 # }
 
 @login_manager.user_loader
@@ -93,7 +96,9 @@ def index():
 def feeds():
     if  current_user.is_authenticated:
         # return render_template('feedbacks.html', comments=Comment.query.all())
-        return render_template('feedbacks.html', query = Feed.query.all())
+        # return render_template('feedbacks.html', query = Feed.query.all())
+        return render_template('feedbacks.html', query = Feed.query.filter(Feed.id > current_user.id))
+        # return current_user.username
     if not current_user.is_authenticated:
         return render_template('feedbacks.html')
 @app.route("/login/", methods=["GET", "POST"])
